@@ -9,6 +9,16 @@ var parser = require('body-parser');
 var router = require('./routes.js');
 
 var app = express();
+app.use(function(req, res, next) {
+  res.set({
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
+    "access-control-allow-headers": "Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, X-Parse-Application-Id, X-Parse-REST-API-Key",
+    "access-control-max-age": 10 // Seconds.
+  });
+
+  next();
+});
 module.exports.app = app;
 
 // Set what we are listening on.
