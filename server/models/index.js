@@ -8,7 +8,6 @@ module.exports = {
     get: function (callback) {
 
       var query = "SELECT * from messages";
-      console.log(query);
       db.dbConnection.query(query, function(err, rows, fields){
         if (err) {
           throw err;
@@ -29,7 +28,14 @@ module.exports = {
 
   users: {
     // Ditto as above.
-    get: function () {},
+    get: function (callback) {
+      var query = "SELECT * FROM `users`";
+      db.dbConnection.query(query, function(err, rows, fields){
+        if (err) throw err;
+        callback(err, rows, fields);
+      })
+
+    },
     post: function (user, callback) {
       var query = "INSERT into `users` (`name`) VALUES ('" + user['username'] + "');";
       db.dbConnection.query(query, function(err, rows, fields){

@@ -8,7 +8,6 @@ module.exports = {
       //console.log(req.url + " at messages get");
       models.messages.get(function(err, resp, allMessages){
         var stringified = JSON.stringify(allMessages);
-        console.log(stringified);
         res.end(stringified);
       });
     }, // a function which handles a get request for all messages
@@ -23,7 +22,9 @@ module.exports = {
   users: {
     // Ditto as above
     get: function (req, res) {
-      //console.log(req.url + " at users get");
+      models.users.get(function(err, resp, username){
+        res.end(JSON.stringify(resp));
+      });
     },
     post: function (req, res) {
       //console.log(req.url + " at users post");

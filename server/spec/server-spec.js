@@ -64,31 +64,54 @@ describe("Persistent Node Chat Server", function() {
     });
   });
 
-  it("Should output all messages from the DB", function(done) {
-    // Let's insert a message into the db
-       var queryString = "INSERT INTO `messages` SET ?";
-       var queryArgs = {message: "Men like you can never change!", user: 1, room: 1};
-    // TODO - The exact query string and query args to use
-    // here depend on the schema you design, so I'll leave
-    // them up to you. */
+  // it("Should output all messages from the DB", function(done) {
+  //   // Let's insert a message into the db
+  //      var queryString = "INSERT INTO `messages` SET ?";
+  //      var queryArgs = {message: "Men like you can never change!", user: 1, room: 1};
+  //   // TODO - The exact query string and query args to use
+  //   // here depend on the schema you design, so I'll leave
+  //   // them up to you. */
 
-    dbConnection.query(queryString, queryArgs, function(err) {
-      if (err) { throw err; }
+  //   dbConnection.query(queryString, queryArgs, function(err) {
+  //     if (err) { throw err; }
 
-      // Now query the Node chat server and see if it returns
-      // the message we just inserted:
-      request("http://127.0.0.1:3000/classes/messages", function(error, response, body) {
-        console.log(body);
-        console.log(typeof body);
+  //     // Now query the Node chat server and see if it returns
+  //     // the message we just inserted:
+  //     request("http://127.0.0.1:3000/classes/messages", function(error, response, body) {
 
-        var messageLog = JSON.parse(body);
+  //       var messageLog = JSON.parse(body);
 
-        expect(messageLog[0].message).to.equal("Men like you can never change!");
-        expect(messageLog[0].room).to.equal(1);
-        expect(messageLog[0].user).to.equal(1);
+  //       expect(messageLog[0].message).to.equal("Men like you can never change!");
+  //       expect(messageLog[0].room).to.equal(1);
+  //       expect(messageLog[0].user).to.equal(1);
 
-        done();
-      });
-    });
-  });
+  //       done();
+  //     });
+  //   });
+
+  //   it("Should get the usernme when given the id", function(done) {
+  //   // Let's insert a message into the db
+  //      var queryString = "INSERT INTO `messages` SET ?";
+  //      var queryArgs = {message: "Men like you can never change!", user: 1, room: 1};
+  //   // TODO - The exact query string and query args to use
+  //   // here depend on the schema you design, so I'll leave
+  //   // them up to you. */
+
+  //   dbConnection.query(queryString, queryArgs, function(err) {
+  //     if (err) { throw err; }
+
+  //     // Now query the Node chat server and see if it returns
+  //     // the message we just inserted:
+  //     request("http://127.0.0.1:3000/classes/messages", function(error, response, body) {
+
+  //       var messageLog = JSON.parse(body);
+
+        
+
+  //       done();
+  //     });
+  //   });
+
+
+  // });
 });
